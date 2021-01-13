@@ -71,7 +71,7 @@ function work() {
             }
         ]).then(response => {
     
-            const newEngineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.Github);
+            const newEngineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.github);
             teamList.push(newEngineer);
             chooseMember();
         });
