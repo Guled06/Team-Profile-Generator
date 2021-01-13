@@ -16,11 +16,9 @@ const Choices = require("inquirer/lib/objects/choices");
 // and to create objects for each team member (using the correct classes as blueprints!)
 const teamList = [];
 
-function work() {
-
     function getManager() {
     
-        return inquirer.prompt([
+        inquirer.prompt([
             {
                 type: "input",
                 message: "Enter the Manager's name",
@@ -45,7 +43,6 @@ function work() {
 
             const newManager = new Manager(response.managerName, response.managerID, response.managerEmail, response.officeNumber);
             teamList.push(newManager);
-            addMember();
         });
     };
     
@@ -69,15 +66,13 @@ function work() {
             {
                 type: "input",
                 message: "What is the Engineer's GitHub username?",
-                name: "Github"
+                name: "github"
             }
         ]).then(response => {
 
             const newEngineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.Github);
             teamList.push(newEngineer);
-            addMember();
         });
-    
     };
 
     function getIntern() {
@@ -106,7 +101,6 @@ function work() {
 
             const newIntern = new Intern(response.internName, response.internID, response.internEmail, response.internSchool);
             teamList.push(newIntern);
-            addMember();
         });
     };
 
@@ -116,12 +110,7 @@ function work() {
                 type: "checkbox",
                 message: "Please select an employee",
                 name: "select",
-                choices: [
-                    "manager",
-                    "engineer",
-                    "intern",
-                    "done"
-                ]
+                choices: ["manager", "engineer", "intern", "done"]
             }
         ]).then(response => {
             const position = response.select;
@@ -132,20 +121,15 @@ function work() {
             } else if (position === "intern") {
                  getIntern();
             } else if (position === "done") {
-                 goTeam();
+                goTeam();
             }
         });
+    
     };
-
-    addMember();
-}
 
 function goTeam() {
     fs.writeFile(outputPath, render(teamList));
-}
-
-work();
-
+};
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
