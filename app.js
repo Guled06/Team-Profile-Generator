@@ -13,9 +13,7 @@ const Choices = require("inquirer/lib/objects/choices");
 
 const teamList = [];
 
-function work() {
-
-    function getManager() {
+    function addManager() {
     
         inquirer.prompt([
             {
@@ -36,18 +34,18 @@ function work() {
             {
                 type: "input",
                 message: "What is the Manager's office number?",
-                name: "officeNumber"
+                name: "managerOffice"
             }
         ]).then(response => {
     
-            const newManager = new Manager(response.managerName, response.managerID, response.managerEmail, response.officeNumber);
+            const newManager = new Manager(response.managerName, response.managerID, response.managerEmail, response.managerOffice);
             teamList.push(newManager);
             chooseMember();
     
         });
     }
     
-    function getEngineer() {
+    function addEngineer() {
          inquirer.prompt([
             {
                 type: "input",
@@ -78,7 +76,7 @@ function work() {
     }
     
     
-    function getIntern() {
+    function addIntern() {
          inquirer.prompt([
             {
                 type: "input",
@@ -116,17 +114,17 @@ function work() {
                 type: "checkbox",
                 message: "Please select an employee to add to your team",
                 name: "select",
-                choices: ["manager", "engineer", "intern", "no more members to add at this time!"]
+                choices: ["Manager", "Engineer", "Intern", "No more members to add at this time!"]
             }
         ]).then(response => {
-            const role = response.select;
-            if (role == "manager") {
-                getManager();
-            } else if (role == "engineer") {
-                getEngineer();
-            } else if (role == "intern") {
-                getIntern();
-            } else if (role == "no more members to add at this time!") {
+            const position = response.select;
+            if (position == "Manager") {
+                addManager();
+            } else if (position == "Engineer") {
+                addEngineer();
+            } else if (position == "Intern") {
+                addIntern();
+            } else if (position == "No more members to add at this time!") {
                 write();
             }
         });
@@ -135,10 +133,8 @@ function work() {
 
     chooseMember();
 
-}
 function write() {
     fs.writeFileSync(outputPath, render(teamList));
 }
 
-work();
        
