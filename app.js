@@ -125,6 +125,7 @@ const teamList = [];
             } else if (position == "Intern") {
                 addIntern();
             } else if (position == "No more members to add at this time!") {
+                console.log("You're all done. Your team is now ready to be viewed!")
                 write();
             }
         });
