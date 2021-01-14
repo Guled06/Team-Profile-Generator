@@ -18,7 +18,7 @@ const teamList = [];
         inquirer.prompt([
             {
                 type: "input",
-                message: "Enter the Manager's name",
+                message: "What is the Manager's name?",
                 name: "managerName"
             },
             {
@@ -112,7 +112,7 @@ const teamList = [];
 
             {
                 type: "checkbox",
-                message: "Please select an employee to add to your team",
+                message: "Please select an employee to add to your team:",
                 name: "role",
                 choices: ["Manager", "Engineer", "Intern", "No more members to add at this time!"]
             }
