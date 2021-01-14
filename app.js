@@ -113,11 +113,11 @@ const teamList = [];
             {
                 type: "checkbox",
                 message: "Please select an employee to add to your team",
-                name: "employee",
+                name: "role",
                 choices: ["Manager", "Engineer", "Intern", "No more members to add at this time!"]
             }
         ]).then(response => {
-            const position = response.employee;
+            const position = response.role;
             if (position == "Manager") {
                 addManager();
             } else if (position == "Engineer") {
